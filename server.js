@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import morgan from "morgan";
-import connectDB from "./config/db.js";
+// import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 // import { isAdmin, protect } from "./middlewares/authMiddleware.js";
 // import mongoose from "mongoose";
@@ -11,6 +11,20 @@ import Points from "./models/Points.js";
 import gameRoutes from "./routes/gameRoutes.js";
 import pointsRoutes from "./routes/pointsRoutes.js";
 import pointsTableRoutes from "./routes/pointsTableRoutes.js";
+import mongoose from "mongoose";
+
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI, {
+
+    });
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+    process.exit(1);
+  }
+};
+
 
 dotenv.config();
 connectDB();
