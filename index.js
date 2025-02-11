@@ -53,7 +53,7 @@ const seedTeams = async () => {
         await Points.create(team);
       }
     }
-    console.log("Default teams seeded successfully.");
+    console.log("Default teams seeded successfully");
   } catch (error) {
     console.error("Error seeding teams:", error);
   }
